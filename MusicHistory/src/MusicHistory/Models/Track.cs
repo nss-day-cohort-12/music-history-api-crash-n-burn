@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MusicHistory.Models
 {
-    internal class Track
+    public class Track
     {
         public int TrackId { get; set; }
         public int AlbumId { get; set; }
