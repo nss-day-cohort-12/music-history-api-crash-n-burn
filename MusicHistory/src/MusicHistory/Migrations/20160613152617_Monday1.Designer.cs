@@ -8,8 +8,8 @@ using MusicHistory.Models;
 namespace MusicHistory.Migrations
 {
     [DbContext(typeof(MusicHistoryContext))]
-    [Migration("20160610164322_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20160613152617_Monday1")]
+    partial class Monday1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,20 @@ namespace MusicHistory.Migrations
                     b.HasKey("AlbumId");
 
                     b.ToTable("Album");
+                });
+
+            modelBuilder.Entity("MusicHistory.Models.AppUser", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("AppUser");
                 });
 
             modelBuilder.Entity("MusicHistory.Models.Artist", b =>
@@ -72,23 +86,21 @@ namespace MusicHistory.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("TrackId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Track");
                 });
 
-            modelBuilder.Entity("MusicHistory.Models.User", b =>
+            modelBuilder.Entity("MusicHistory.Models.Track", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("User");
+                    b.HasOne("MusicHistory.Models.AppUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }
