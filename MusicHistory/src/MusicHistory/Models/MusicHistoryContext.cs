@@ -17,6 +17,6 @@ namespace MusicHistory.Models
         public DbSet<Artist> Artist { get; set; }
         public DbSet<Genre> Genre { get; set; }
         public DbSet<Track> Track { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
     }
 }
